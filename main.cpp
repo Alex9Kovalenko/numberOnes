@@ -9,11 +9,11 @@ int main(void)
 {
     // recording the text from file to the array
     char buffer[101];
-    char filename[] = "input.txt";
-    ifstream in(filename, ios_base::in);
+    char input[] = "input.txt";
+    ifstream in(input, ios_base::in);
     if (!in.is_open())
     {
-        cout << "Error! File " << filename << " not found!\n";
+        cout << "Error! File " << input << " not found!\n";
         exit(-1);
     }
     in.getline(buffer, sizeof buffer);
@@ -33,7 +33,15 @@ int main(void)
     }
     
     // outputting the result
-    cout << "There are " << result << " ones in the longest chain!\n";
+    char output[] = "output.txt";
+    ofstream out(output, ios_base::out);
+    if (!out.is_open())
+    {
+        cout << "Error! Cannot open " << output << endl;
+        exit(-3);
+    }
+    out << "There are " << result << " ones in the longest chain!\n";
+    out.close();
     
     system("pause");
     return 0;
